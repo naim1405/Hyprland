@@ -8,62 +8,64 @@
 # IMPORTANT - This script is meant to run on a clean fresh Arch install on physical hardware
 
 # Define the software that would be inbstalled 
-#Need some prep work
-prep_stage=(
-    qt5-wayland 
+#the main packages
+install_stage=(
+    qt5-wayland
     qt5ct
-    qt6-wayland 
+    qt6-wayland
     qt6ct
     qt5-svg
     qt5-quickcontrols2
     qt5-graphicaleffects
-    gtk3 
-    polkit-gnome 
-    pipewire 
-    wireplumber 
-    jq 
-    wl-clipboard 
-    cliphist 
-    python-requests 
+    gtk3
+    polkit-gnome
+    pipewire
+    wireplumber
+    cliphist
+    python-requests
     pacman-contrib
-)
-
-#the main packages
-install_stage=(
-    kitty 
-    mako 
-    waybar
-    swww 
-    swaylock-effects 
-    wofi 
-    wlogout 
-    xdg-desktop-portal-hyprland 
-    swappy 
-    grim 
-    slurp 
-    thunar 
-    btop
-    firefox
-    thunderbird
-    mpv
-    pamixer 
-    pavucontrol 
-    brightnessctl 
-    bluez 
-    bluez-utils 
-    blueman 
-    network-manager-applet 
-    gvfs 
-    thunar-archive-plugin 
-    file-roller
-    starship 
-    papirus-icon-theme 
-    ttf-jetbrains-mono-nerd 
-    noto-fonts-emoji 
-    lxappearance 
-    xfce4-settings
-    nwg-look-bin
+    pipewire-alsa
+    pipewire-audio
+    pipewire-jack
+    pipewire-pulse
+    gst-plugin-pipewire
+    pavucontrol
+    pamixer
+    networkmanager
+    network-manager-applet
+    bluez
+    bluez-utils
+    blueman
+    brightnessctl
+    udiskie
     sddm
+    qt5-quickcontrols
+    dunst
+    rofi-lbonn-wayland-git
+    waybar
+    swww
+    swaylock-effects-git
+    wlogout
+    grimblast-git
+    hyprpicker
+    slurp
+    swappy
+    xdg-desktop-portal-hyprland
+    python-pyamdgpuinfo
+    parallel
+    imagemagick
+    qt5-imageformats
+    ffmpegthumbs
+    kde-cli-tools
+    libnotify
+    nwg-look
+    kvantum
+    kvantum-qt5
+    firefox
+    alacritty
+    thunar
+    ark
+    code
 )
 
 for str in ${myArray[@]}; do
@@ -131,12 +133,6 @@ fi
 ### Install all of the above pacakges ####
 read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install the packages? (y,n) ' INST
 if [[ $INST == "Y" || $INST == "y" ]]; then
-
-    # Prep Stage - Bunch of needed items
-    echo -e "$CNT - Prep Stage - Installing needed components, this may take a while..."
-    for SOFTWR in ${prep_stage[@]}; do
-        install_software $SOFTWR 
-    done
 
     # Install the correct hyprland version
     echo -e "$CNT - Installing Hyprland, this may take a while..."   
